@@ -15,32 +15,42 @@ import android.app.PictureInPictureParams
 import android.util.Rational
 import android.os.Build
 import android.content.res.Configuration
+import android.app.PendingIntent
+import android.app.RemoteAction
+import android.graphics.drawable.Icon
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.IntentFilter
 
 class MainActivity: FlutterActivity() {
     private val CHANNEL = "com.example.talk_recognition/tone"
     private val PIP_CHANNEL = "com.example.talk_recognition/pip"
+    private val ACTION_MIC_TOGGLE = "com.example.talk_recognition.MIC_TOGGLE"
     private var toneGenerator: ToneGenerator? = null
     private var mediaPlayer: MediaPlayer? = null
     private var pipEventSink: EventChannel.EventSink? = null
+    private var methodChannel: MethodChannel? = null
+
+    private val micReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.action == ACTION_MIC_TOGGLE) {
+                methodChannel?.invokeMethod("toggleMic", null)
+            }
+        }
+    }
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
-        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
+        
+        methodChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL)
+        
+        methodChannel!!.setMethodCallHandler { call, result ->
             if (call.method == "playChime") {
-                // Try playing custom alarm.wav
                 try {
-                    // Create new instance or reuse? Better create new to ensure fresh start from beginning
-                    // But creating every 2s is heavy. 
-                    // Let's create once if null or not playing?
-                    // Actually alarm loop calls this every 2s. 
-                    // If playing, we might restart?
-                    // Let's reuse if possible, or create new.
                     if (mediaPlayer == null) {
                         try {
                             mediaPlayer = MediaPlayer.create(this, R.raw.alarm)
-                        } catch (e: Exception) {
-                            // Resource might be invalid (dummy file)
-                        }
+                        } catch (e: Exception) {}
                     }
                     
                     if (mediaPlayer != null) {
@@ -102,7 +112,6 @@ class MainActivity: FlutterActivity() {
                 if (phone != null && message != null) {
                     try {
                         val smsManager = android.telephony.SmsManager.getDefault()
-                        // 긴 메시지는 분할 전송
                         val parts = smsManager.divideMessage(message)
                         if (parts.size > 1) {
                             smsManager.sendMultipartTextMessage(phone, null, parts, null, null)
@@ -137,10 +146,7 @@ class MainActivity: FlutterActivity() {
                 }
             } else if (call.method == "enterPip") {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    val params = PictureInPictureParams.Builder()
-                        .setAspectRatio(Rational(1, 1))
-                        .build()
-                    enterPictureInPictureMode(params)
+                    enterPipMode()
                     result.success(true)
                 } else {
                     result.success(false)
@@ -150,7 +156,7 @@ class MainActivity: FlutterActivity() {
             }
         }
 
-        // PiP EventChannel - Flutter에 PiP 상태 변경 알림
+        // PiP EventChannel
         EventChannel(flutterEngine.dartExecutor.binaryMessenger, PIP_CHANNEL).setStreamHandler(
             object : EventChannel.StreamHandler {
                 override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
@@ -161,12 +167,33 @@ class MainActivity: FlutterActivity() {
                 }
             }
         )
+
+        // 마이크 토글 BroadcastReceiver 등록
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(micReceiver, IntentFilter(ACTION_MIC_TOGGLE), Context.RECEIVER_NOT_EXPORTED)
+        } else {
+            registerReceiver(micReceiver, IntentFilter(ACTION_MIC_TOGGLE))
+        }
     }
 
     private fun enterPipMode() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val micIntent = Intent(ACTION_MIC_TOGGLE)
+            micIntent.setPackage(packageName)
+            val micPendingIntent = PendingIntent.getBroadcast(
+                this, 0, micIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+            val micAction = RemoteAction(
+                Icon.createWithResource(this, android.R.drawable.ic_btn_speak_now),
+                "마이크",
+                "음성 인식 시작",
+                micPendingIntent
+            )
+
             val params = PictureInPictureParams.Builder()
                 .setAspectRatio(Rational(1, 1))
+                .setActions(listOf(micAction))
                 .build()
             enterPictureInPictureMode(params)
         }
@@ -180,6 +207,11 @@ class MainActivity: FlutterActivity() {
     override fun onPictureInPictureModeChanged(isInPipMode: Boolean, newConfig: Configuration) {
         super.onPictureInPictureModeChanged(isInPipMode, newConfig)
         pipEventSink?.success(isInPipMode)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        try { unregisterReceiver(micReceiver) } catch (e: Exception) {}
     }
 
     private fun playFallbackTone() {

@@ -120,9 +120,30 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
 
   void _initPipListener() {
     _pipEventChannel.receiveBroadcastStream().listen((event) {
+      final isInPip = event as bool;
       setState(() {
-        _isInPipMode = event as bool;
+        _isInPipMode = isInPip;
       });
+      // PiP 진입 시 자동으로 음성 인식 시작
+      if (isInPip && !_isListening) {
+        Future.delayed(const Duration(milliseconds: 500), () {
+          _listen();
+        });
+      }
+    });
+
+    // Android에서 PiP RemoteAction(마이크 버튼) 클릭 시 호출됨
+    const platform = MethodChannel('com.example.talk_recognition/tone');
+    platform.setMethodCallHandler((call) async {
+      if (call.method == 'toggleMic') {
+        if (_isListening) {
+          _speech.stop();
+          setState(() => _isListening = false);
+        } else {
+          _listen();
+        }
+      }
+      return null;
     });
   }
 
