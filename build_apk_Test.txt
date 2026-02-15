@@ -1,0 +1,1402 @@
+Resolving dependencies...
+Downloading packages...
+  flutter_local_notifications 17.2.4 (20.1.0 available)
+  flutter_local_notifications_linux 4.0.1 (7.0.0 available)
+  flutter_local_notifications_platform_interface 7.2.0 (10.0.0 available)
+  flutter_timezone 2.1.0 (5.0.1 available)
+  intl 0.19.0 (0.20.2 available)
+  meta 1.17.0 (1.18.1 available)
+  permission_handler 11.4.0 (12.0.1 available)
+  permission_handler_android 12.1.0 (13.0.1 available)
+  petitparser 7.0.1 (7.0.2 available)
+  test_api 0.7.8 (0.7.9 available)
+  timezone 0.9.4 (0.11.0 available)
+Got dependencies!
+11 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Running Gradle task 'assembleDebug'...                          
+Warning: Flutter support for your project's Android Gradle Plugin version (Android Gradle Plugin version 8.5.1) will soon be dropped. Please upgrade your Android Gradle Plugin version to a version of at least Android Gradle Plugin version 8.6.0 soon.
+Alternatively, use the flag "--android-skip-build-dependency-validation" to bypass this check.
+
+Potential fix: Your project's AGP version is typically defined in the plugins block of the `settings.gradle` file (D:\AntiGravityProject\TalkRecognition\android/settings.gradle), by a plugin with the id of com.android.application. 
+If you don't see a plugins block, your project was likely created with an older template version. In this case it is most likely defined in the top-level build.gradle file (D:\AntiGravityProject\TalkRecognition\android/build.gradle) by the following line in the dependencies block of the buildscript: "classpath 'com.android.tools.build:gradle:<version>'".
+
+Warning: Flutter support for your project's Kotlin version (1.9.23) will soon be dropped. Please upgrade your Kotlin version to a version of at least 2.1.0 soon.
+Alternatively, use the flag "--android-skip-build-dependency-validation" to bypass this check.
+
+Potential fix: Your project's KGP version is typically defined in the plugins block of the `settings.gradle` file (D:\AntiGravityProject\TalkRecognition\android/settings.gradle), by a plugin with the id of org.jetbrains.kotlin.android. 
+If you don't see a plugins block, your project was likely created with an older template version, in which case it is most likely defined in the top-level build.gradle file (D:\AntiGravityProject\TalkRecognition\android/build.gradle) by the ext.kotlin_version property.
+
+Warning: The plugin flutter_tts requires Android SDK version 36 or higher.
+For more information about build configuration, see https://flutter.dev/to/review-gradle-config.
+Warning: The plugin speech_to_text requires Android SDK version 36 or higher.
+For more information about build configuration, see https://flutter.dev/to/review-gradle-config.
+Warning: The plugin url_launcher_android requires Android SDK version 36 or higher.
+For more information about build configuration, see https://flutter.dev/to/review-gradle-config.
+Your project is configured to compile against Android SDK 34, but the following plugin(s) require to be compiled against a higher Android SDK version:
+- flutter_tts compiles against Android SDK 36
+- speech_to_text compiles against Android SDK 36
+- url_launcher_android compiles against Android SDK 36
+Fix this issue by compiling against the highest Android SDK version (they are backward compatible).
+Add the following to D:\AntiGravityProject\TalkRecognition\android\app\build.gradle.kts:
+
+    android {
+        compileSdk = 36
+        ...
+    }
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+3 warnings
+e: Daemon compilation failed: null
+java.lang.Exception
+	at org.jetbrains.kotlin.daemon.common.CompileService$CallResult$Error.get(CompileService.kt:69)
+	at org.jetbrains.kotlin.daemon.common.CompileService$CallResult$Error.get(CompileService.kt:65)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKotlinCompilerWork.kt:244)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbackImpl(GradleKotlinCompilerWork.kt:175)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:135)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:73)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalArgumentException: this and base files have different roots: C:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt and D:\AntiGravityProject\TalkRecognition\android.
+	at kotlin.io.FilesKt__UtilsKt.toRelativeString(Utils.kt:117)
+	at kotlin.io.FilesKt__UtilsKt.relativeTo(Utils.kt:128)
+	at org.jetbrains.kotlin.incremental.storage.RelocatableFileToPathConverter.toPath(RelocatableFileToPathConverter.kt:22)
+	at org.jetbrains.kotlin.incremental.storage.ComplementarySourceFilesMap.get(ComplementarySourceFilesMap.kt:22)
+	at org.jetbrains.kotlin.incremental.AbstractIncrementalCache.getComplementaryFilesRecursive(AbstractIncrementalCache.kt:219)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.doCompile(IncrementalCompilerRunner.kt:455)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileImpl(IncrementalCompilerRunner.kt:400)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileNonIncrementally(IncrementalCompilerRunner.kt:281)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:125)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:657)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:105)
+	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1624)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	... 3 more
+
+e: Daemon compilation failed: null
+java.lang.Exception
+	at org.jetbrains.kotlin.daemon.common.CompileService$CallResult$Error.get(CompileService.kt:69)
+	at org.jetbrains.kotlin.daemon.common.CompileService$CallResult$Error.get(CompileService.kt:65)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKotlinCompilerWork.kt:244)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbackImpl(GradleKotlinCompilerWork.kt:175)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:135)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:73)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalArgumentException: this and base files have different roots: C:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_timezone-2.1.0\android\src\main\kotlin\net\wolverinebeach\flutter_timezone\FlutterTimezonePlugin.kt and D:\AntiGravityProject\TalkRecognition\android.
+	at kotlin.io.FilesKt__UtilsKt.toRelativeString(Utils.kt:117)
+	at kotlin.io.FilesKt__UtilsKt.relativeTo(Utils.kt:128)
+	at org.jetbrains.kotlin.incremental.storage.RelocatableFileToPathConverter.toPath(RelocatableFileToPathConverter.kt:22)
+	at org.jetbrains.kotlin.incremental.storage.ComplementarySourceFilesMap.get(ComplementarySourceFilesMap.kt:22)
+	at org.jetbrains.kotlin.incremental.AbstractIncrementalCache.getComplementaryFilesRecursive(AbstractIncrementalCache.kt:219)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.doCompile(IncrementalCompilerRunner.kt:455)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileImpl(IncrementalCompilerRunner.kt:400)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileNonIncrementally(IncrementalCompilerRunner.kt:281)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:125)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:657)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:105)
+	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1624)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	... 3 more
+
+e: Daemon compilation failed: null
+java.lang.Exception
+	at org.jetbrains.kotlin.daemon.common.CompileService$CallResult$Error.get(CompileService.kt:69)
+	at org.jetbrains.kotlin.daemon.common.CompileService$CallResult$Error.get(CompileService.kt:65)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKotlinCompilerWork.kt:244)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbackImpl(GradleKotlinCompilerWork.kt:175)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:135)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:73)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalArgumentException: this and base files have different roots: C:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\speech_to_text-7.3.0\android\src\main\kotlin\com\csdcorp\speech_to_text\SpeechToTextPlugin.kt and D:\AntiGravityProject\TalkRecognition\android.
+	at kotlin.io.FilesKt__UtilsKt.toRelativeString(Utils.kt:117)
+	at kotlin.io.FilesKt__UtilsKt.relativeTo(Utils.kt:128)
+	at org.jetbrains.kotlin.incremental.storage.RelocatableFileToPathConverter.toPath(RelocatableFileToPathConverter.kt:22)
+	at org.jetbrains.kotlin.incremental.storage.ComplementarySourceFilesMap.get(ComplementarySourceFilesMap.kt:22)
+	at org.jetbrains.kotlin.incremental.AbstractIncrementalCache.getComplementaryFilesRecursive(AbstractIncrementalCache.kt:219)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.doCompile(IncrementalCompilerRunner.kt:455)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileImpl(IncrementalCompilerRunner.kt:400)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileNonIncrementally(IncrementalCompilerRunner.kt:281)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:125)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:657)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:105)
+	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1624)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	... 3 more
+
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+3 warnings
+e: Daemon compilation failed: null
+java.lang.Exception
+	at org.jetbrains.kotlin.daemon.common.CompileService$CallResult$Error.get(CompileService.kt:69)
+	at org.jetbrains.kotlin.daemon.common.CompileService$CallResult$Error.get(CompileService.kt:65)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKotlinCompilerWork.kt:244)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbackImpl(GradleKotlinCompilerWork.kt:175)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:135)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:73)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalArgumentException: this and base files have different roots: C:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\torch_light-1.1.0\android\src\main\kotlin\com\svprdga\torchlight\TorchLightPlugin.kt and D:\AntiGravityProject\TalkRecognition\android.
+	at kotlin.io.FilesKt__UtilsKt.toRelativeString(Utils.kt:117)
+	at kotlin.io.FilesKt__UtilsKt.relativeTo(Utils.kt:128)
+	at org.jetbrains.kotlin.incremental.storage.RelocatableFileToPathConverter.toPath(RelocatableFileToPathConverter.kt:22)
+	at org.jetbrains.kotlin.incremental.storage.ComplementarySourceFilesMap.get(ComplementarySourceFilesMap.kt:22)
+	at org.jetbrains.kotlin.incremental.AbstractIncrementalCache.getComplementaryFilesRecursive(AbstractIncrementalCache.kt:219)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.doCompile(IncrementalCompilerRunner.kt:455)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileImpl(IncrementalCompilerRunner.kt:400)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileNonIncrementally(IncrementalCompilerRunner.kt:281)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:125)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:657)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:105)
+	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1624)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	... 3 more
+
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_timezone-2.1.0\android\src\main\kotlin\net\wolverinebeach\flutter_timezone\FlutterTimezonePlugin.kt:12:48: error: unresolved reference: Registrar
+exception: import io.flutter.plugin.common.PluginRegistry.Registrar
+exception:                                                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_timezone-2.1.0\android\src\main\kotlin\net\wolverinebeach\flutter_timezone\FlutterTimezonePlugin.kt:23:37: error: unresolved reference: Registrar
+exception:         fun registerWith(registrar: Registrar) {
+exception:                                     ^
+exception: error: incompatible classes were found in dependencies. Remove them from the classpath or use '-Xskip-metadata-version-check' to suppress errors
+exception: c:\Users\goobo\.gradle\caches\8.14\transforms\c9a9592906d24bed91747a7f746be2c2\transformed\jetified-kotlin-stdlib-2.2.20.jar!\META-INF\kotlin-stdlib-jdk7.kotlin_module: error: module was compiled with an incompatible version of Kotlin. The binary version of its metadata is 2.2.0, expected version is 1.9.0.
+exception: c:\Users\goobo\.gradle\caches\8.14\transforms\c9a9592906d24bed91747a7f746be2c2\transformed\jetified-kotlin-stdlib-2.2.20.jar!\META-INF\kotlin-stdlib-jdk8.kotlin_module: error: module was compiled with an incompatible version of Kotlin. The binary version of its metadata is 2.2.0, expected version is 1.9.0.
+exception: c:\Users\goobo\.gradle\caches\8.14\transforms\c9a9592906d24bed91747a7f746be2c2\transformed\jetified-kotlin-stdlib-2.2.20.jar!\META-INF\kotlin-stdlib.kotlin_module: error: module was compiled with an incompatible version of Kotlin. The binary version of its metadata is 2.2.0, expected version is 1.9.0.
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:47:38: error: unresolved reference: ArrayList
+exception:     private val pendingMethodCalls = ArrayList<Runnable>()
+exception:                                      ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:48:30: error: unresolved reference: HashMap
+exception:     private val utterances = HashMap<String, String>()
+exception:                              ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:69:14: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         this.context = context
+exception:              ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:70:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         methodChannel = MethodChannel(messenger, "flutter_tts")
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:71:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         methodChannel!!.setMethodCallHandler(this)
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:72:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         handler = Handler(Looper.getMainLooper())
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:73:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         bundle = Bundle()
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:74:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         tts = TextToSpeech(context, onInitListenerWithoutCallback)
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:79:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         initInstance(binding.binaryMessenger, binding.applicationContext)
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:83:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         stop()
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:84:15: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         tts!!.shutdown()
+exception:               ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:85:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         context = null
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:86:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         methodChannel!!.setMethodCallHandler(null)
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:87:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         methodChannel = null
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:93:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 if (utteranceId.startsWith(SYNTHESIZE_TO_FILE_PREFIX)) {
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:93:33: error: unresolved reference: startsWith
+exception:                 if (utteranceId.startsWith(SYNTHESIZE_TO_FILE_PREFIX)) {
+exception:                                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:94:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     invokeMethod("synth.onStart", true)
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:96:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     if (isPaused) {
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:97:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         invokeMethod("speak.onContinue", true)
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:98:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         isPaused = false
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:100:29: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         Log.d(tag, "Utterance ID has started: $utteranceId")
+exception:                             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:101:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         invokeMethod("speak.onStart", true)
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:105:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     onProgress(utteranceId, 0, utterances[utteranceId]!!.length)
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:110:33: error: unresolved reference: startsWith
+exception:                 if (utteranceId.startsWith(SILENCE_PREFIX)) return
+exception:                                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:111:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 if (utteranceId.startsWith(SYNTHESIZE_TO_FILE_PREFIX)) {
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:111:33: error: unresolved reference: startsWith
+exception:                 if (utteranceId.startsWith(SYNTHESIZE_TO_FILE_PREFIX)) {
+exception:                                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:112:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     closeParcelFileDescriptor(false)
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:113:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     Log.d(tag, "Utterance ID has completed: $utteranceId")
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:115:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         synthCompletion(1)
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:117:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     invokeMethod("synth.onComplete", true)
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:119:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     Log.d(tag, "Utterance ID has completed: $utteranceId")
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:121:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         speakCompletion(1)
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:123:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     invokeMethod("speak.onComplete", true)
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:125:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 lastProgress = 0
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:126:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 pauseText = null
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:128:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 releaseAudioFocus()
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:132:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 Log.d(
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:137:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     speaking = false
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:139:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 if (isPaused) {
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:140:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     invokeMethod("speak.onPause", true)
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:142:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     invokeMethod("speak.onCancel", true)
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:144:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 releaseAudioFocus()
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:148:57: error: unresolved reference: startsWith
+exception:                 if (utteranceId != null && !utteranceId.startsWith(SYNTHESIZE_TO_FILE_PREFIX)) {
+exception:                                                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:150:32: error: unresolved reference: HashMap
+exception:                     val data = HashMap<String, String?>()
+exception:                                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:155:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     invokeMethod("speak.onProgress", data)
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:161:34: error: unresolved reference: startsWith
+exception:                 if (!utteranceId.startsWith(SYNTHESIZE_TO_FILE_PREFIX)) {
+exception:                                  ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:162:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     lastProgress = startAt
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:163:27: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     super.onRangeStart(utteranceId, startAt, endAt, frame)
+exception:                           ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:164:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     onProgress(utteranceId, startAt, endAt)
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:168:14: error: class 'kotlin.Deprecated' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Deprecated.class
+exception:             @Deprecated("")
+exception:              ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:168:14: error: class 'kotlin.ReplaceWith' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/ReplaceWith.class
+exception:             @Deprecated("")
+exception:              ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:168:14: error: class 'kotlin.DeprecationLevel' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/DeprecationLevel.class
+exception:             @Deprecated("")
+exception:              ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:170:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 if (utteranceId.startsWith(SYNTHESIZE_TO_FILE_PREFIX)) {
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:170:33: error: unresolved reference: startsWith
+exception:                 if (utteranceId.startsWith(SYNTHESIZE_TO_FILE_PREFIX)) {
+exception:                                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:171:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     closeParcelFileDescriptor(true)
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:173:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         synth = false
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:175:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     invokeMethod("synth.onError", "Error from TextToSpeech (synth)")
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:178:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         speaking = false
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:180:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     invokeMethod("speak.onError", "Error from TextToSpeech (speak)")
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:182:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 releaseAudioFocus()
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:186:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 if (utteranceId.startsWith(SYNTHESIZE_TO_FILE_PREFIX)) {
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:186:33: error: unresolved reference: startsWith
+exception:                 if (utteranceId.startsWith(SYNTHESIZE_TO_FILE_PREFIX)) {
+exception:                                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:187:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     closeParcelFileDescriptor(true)
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:189:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         synth = false
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:191:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     invokeMethod("synth.onError", "Error from TextToSpeech (synth) - $errorCode")
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:194:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         speaking = false
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:196:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     invokeMethod("speak.onError", "Error from TextToSpeech (speak) - $errorCode")
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:202:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         speaking = false
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:204:26: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             speakResult?.success(success)
+exception:                          ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:205:13: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             speakResult = null
+exception:             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:210:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         synth = false
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:212:26: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             synthResult?.success(success)
+exception:                          ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:213:13: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             synthResult = null
+exception:             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:220:13: error: unresolved reference: synchronized
+exception:             synchronized(this@FlutterTtsPlugin) {
+exception:             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:221:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 ttsStatus = status
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:228:13: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             if (status == TextToSpeech.SUCCESS) {
+exception:             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:230:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 try {
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:233:31: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         tts!!.language = locale
+exception:                               ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:236:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     Log.e(tag, "getDefaultLocale: " + e.message)
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:238:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     Log.e(tag, "getDefaultLocale: " + e.message)
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:241:32: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 engineResult!!.success(1)
+exception:                                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:243:32: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 engineResult!!.error("TtsError","Failed to initialize TextToSpeech with status: $status", null)
+exception:                                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:251:13: error: unresolved reference: synchronized
+exception:             synchronized(this@FlutterTtsPlugin) {
+exception:             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:252:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 ttsStatus = status
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:259:13: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             if (status == TextToSpeech.SUCCESS) {
+exception:             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:261:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 try {
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:264:31: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         tts!!.language = locale
+exception:                               ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:267:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     Log.e(tag, "getDefaultLocale: " + e.message)
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:269:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     Log.e(tag, "getDefaultLocale: " + e.message)
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:272:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 Log.e(tag, "Failed to initialize TextToSpeech with status: $status")
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:278:9: error: unresolved reference: synchronized
+exception:         synchronized(this@FlutterTtsPlugin) {
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:281:48: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 val suspendedCall = Runnable { onMethodCall(call, result) }
+exception:                                                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:283:17: error: 'return' is not allowed here
+exception:                 return
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:286:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         when (call.method) {
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:291:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     pauseText = text
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:292:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     currentText = pauseText!!
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:296:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     if (currentText == text) {
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:299:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         pauseText = text
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:300:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         currentText = pauseText!!
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:301:25: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         lastProgress = 0
+exception:                         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:307:32: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         result.success(0)
+exception:                                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:313:21: error: unresolved reference: synchronized
+exception:                     synchronized(this@FlutterTtsPlugin) {
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:314:56: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         val suspendedCall = Runnable { onMethodCall(call, result) }
+exception:                                                        ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:320:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 if (awaitSpeakCompletion && queueMode == TextToSpeech.QUEUE_FLUSH) {
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:321:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     speaking = true
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:322:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     speakResult = result
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:324:28: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     result.success(1)
+exception:                            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:329:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 awaitSpeakCompletion = java.lang.Boolean.parseBoolean(call.arguments.toString())
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:330:24: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 result.success(1)
+exception:                        ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:334:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 awaitSynthCompletion = java.lang.Boolean.parseBoolean(call.arguments.toString())
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:335:24: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 result.success(1)
+exception:                        ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:340:24: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 result.success(res)
+exception:                        ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:346:28: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     result.success(0)
+exception:                            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:351:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 synthesizeToFile(text!!, fileName!!, isFullPath!!)
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:352:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 if (awaitSynthCompletion) {
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:353:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     synth = true
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:354:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     synthResult = result
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:356:28: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     result.success(1)
+exception:                            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:361:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 isPaused = true
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:363:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     pauseText = pauseText!!.substring(lastProgress)
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:363:45: error: unresolved reference: substring
+exception:                     pauseText = pauseText!!.substring(lastProgress)
+exception:                                             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:365:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 stop()
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:366:24: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 result.success(1)
+exception:                        ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:368:35: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     speakResult!!.success(0)
+exception:                                   ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:369:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     speakResult = null
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:374:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 isPaused = false
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:375:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 pauseText = null
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:376:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 stop()
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:377:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 lastProgress = 0
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:378:24: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 result.success(1)
+exception:                        ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:380:35: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     speakResult!!.success(0)
+exception:                                   ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:381:21: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     speakResult = null
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:387:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 setEngine(engine, result)
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:394:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 setSpeechRate(rate.toFloat() * 2.0f)
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:394:36: error: unresolved reference: toFloat
+exception:                 setSpeechRate(rate.toFloat() * 2.0f)
+exception:                                    ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:395:24: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 result.success(1)
+exception:                        ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:400:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 setVolume(volume.toFloat(), result)
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:400:34: error: unresolved reference: toFloat
+exception:                 setVolume(volume.toFloat(), result)
+exception:                                  ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:405:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 setPitch(pitch.toFloat(), result)
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:405:32: error: unresolved reference: toFloat
+exception:                 setPitch(pitch.toFloat(), result)
+exception:                                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:410:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 setLanguage(language, result)
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:413:31: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             "getLanguages" -> getLanguages(result)
+exception:                               ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:414:28: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             "getVoices" -> getVoices(result)
+exception:                            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:415:42: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             "getSpeechRateValidRange" -> getSpeechRateValidRange(result)
+exception:                                          ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:416:29: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             "getEngines" -> getEngines(result)
+exception:                             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:417:35: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             "getDefaultEngine" -> getDefaultEngine(result)
+exception:                                   ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:418:34: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             "getDefaultVoice" -> getDefaultVoice(result)
+exception:                                  ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:420:28: error: unresolved reference: HashMap
+exception:                 val voice: HashMap<String?, String>? = call.arguments()
+exception:                            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:420:61: error: not enough information to infer type variable T
+exception:                 val voice: HashMap<String?, String>? = call.arguments()
+exception:                                                             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:421:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 setVoice(voice!!, result)
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:424:29: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             "clearVoice" -> clearVoice(result)
+exception:                             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:429:24: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 result.success(isLanguageAvailable(locale))
+exception:                        ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:434:22: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 this.silencems = silencems.toInt()
+exception:                      ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:434:44: error: unresolved reference: toInt
+exception:                 this.silencems = silencems.toInt()
+exception:                                            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:437:43: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             "setSharedInstance" -> result.success(1)
+exception:                                           ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:440:24: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 result.success(isLanguageInstalled(language))
+exception:                        ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:445:24: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 result.success(areLanguagesInstalled(languages!!))
+exception:                        ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:450:22: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 this.queueMode = queueMode.toInt()
+exception:                      ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:450:44: error: unresolved reference: toInt
+exception:                 this.queueMode = queueMode.toInt()
+exception:                                            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:451:24: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 result.success(1)
+exception:                        ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:455:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 setAudioAttributesForNavigation()
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:456:24: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 result.success(1)
+exception:                        ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:459:28: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             else -> result.notImplemented()
+exception:                            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:472:52: error: unresolved reference: HashMap
+exception:         val result: MutableMap<String?, Boolean> = HashMap()
+exception:                                                    ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:474:19: error: unresolved reference: result[language]
+exception:             result[language] = isLanguageInstalled(language)
+exception:                   ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:474:19: error: no set method providing array access
+exception:             result[language] = isLanguageInstalled(language)
+exception:                   ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:498:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         ttsStatus = null
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:499:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         selectedEngine = engine
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:500:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         engineResult = result
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:501:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         tts = TextToSpeech(context, onInitListenerWithCallback, engine)
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:506:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         if (isLanguageAvailable(locale)) {
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:507:19: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             tts!!.language = locale
+exception:                   ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:508:20: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             result.success(1)
+exception:                    ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:510:20: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             result.success(0)
+exception:                    ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:514:33: error: unresolved reference: HashMap
+exception:     private fun setVoice(voice: HashMap<String?, String>, result: Result) {
+exception:                                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:519:23: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 tts!!.voice = ttsVoice
+exception:                       ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:520:24: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 result.success(1)
+exception:                        ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:524:13: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         Log.d(tag, "Voice name not found: $voice")
+exception:             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:525:16: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         result.success(0)
+exception:                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:529:15: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         tts!!.voice = tts!!.defaultVoice
+exception:               ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:530:16: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         result.success(1)
+exception:                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:534:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         if (volume in (0.0f..1.0f)) {
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:534:28: error: unresolved reference: ..
+exception:         if (volume in (0.0f..1.0f)) {
+exception:                            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:535:22: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             bundle!!.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, volume)
+exception:                      ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:536:20: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             result.success(1)
+exception:                    ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:538:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             Log.d(tag, "Invalid volume $volume value - Range is from 0.0 to 1.0")
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:539:20: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             result.success(0)
+exception:                    ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:544:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         if (pitch in (0.5f..2.0f)) {
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:544:27: error: unresolved reference: ..
+exception:         if (pitch in (0.5f..2.0f)) {
+exception:                           ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:546:20: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             result.success(1)
+exception:                    ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:548:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             Log.d(tag, "Invalid pitch $pitch value - Range is from 0.5 to 2.0")
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:549:20: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             result.success(0)
+exception:                    ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:554:22: error: unresolved reference: ArrayList
+exception:         val voices = ArrayList<HashMap<String, String>>()
+exception:                      ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:554:32: error: unresolved reference: HashMap
+exception:         val voices = ArrayList<HashMap<String, String>>()
+exception:                                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:555:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         try {
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:557:32: error: unresolved reference: HashMap
+exception:                 val voiceMap = HashMap<String, String>()
+exception:                                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:558:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 readVoiceProperties(voiceMap, voice)
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:561:20: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             result.success(voices)
+exception:                    ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:563:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             Log.d(tag, "getVoices: " + e.message)
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:564:20: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             result.success(null)
+exception:                    ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:569:23: error: unresolved reference: ArrayList
+exception:         val locales = ArrayList<String>()
+exception:                       ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:570:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         try {
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:571:13: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+exception:             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:579:40: error: unresolved reference: isEmpty
+exception:                     if (locale.variant.isEmpty() && isLanguageAvailable(locale)) {
+exception:                                        ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:585:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             Log.d(tag, "getLanguages: " + e.message)
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:587:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             Log.d(tag, "getLanguages: " + e.message)
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:589:16: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         result.success(locales)
+exception:                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:593:23: error: unresolved reference: ArrayList
+exception:         val engines = ArrayList<String>()
+exception:                       ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:594:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         try {
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:599:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             Log.d(tag, "getEngines: " + e.message)
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:601:16: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         result.success(engines)
+exception:                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:606:16: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         result.success(defaultEngine)
+exception:                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:611:21: error: unresolved reference: HashMap
+exception:         val voice = HashMap<String, String>()
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:613:13: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             readVoiceProperties(voice, defaultVoice)
+exception:             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:615:16: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         result.success(voice)
+exception:                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:619:12: error: unresolved reference: map["name"]
+exception:         map["name"] = voice.name
+exception:            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:619:12: error: no set method providing array access
+exception:         map["name"] = voice.name
+exception:            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:620:12: error: unresolved reference: map["locale"]
+exception:         map["locale"] = voice.locale.toLanguageTag()
+exception:            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:620:12: error: no set method providing array access
+exception:         map["locale"] = voice.locale.toLanguageTag()
+exception:            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:621:12: error: unresolved reference: map["quality"]
+exception:         map["quality"] = qualityToString(voice.quality)
+exception:            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:621:12: error: no set method providing array access
+exception:         map["quality"] = qualityToString(voice.quality)
+exception:            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:622:12: error: unresolved reference: map["latency"]
+exception:         map["latency"] = latencyToString(voice.latency)
+exception:            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:622:12: error: no set method providing array access
+exception:         map["latency"] = latencyToString(voice.latency)
+exception:            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:623:12: error: unresolved reference: map["network_required"]
+exception:         map["network_required"] = if (voice.isNetworkConnectionRequired) "1" else "0"
+exception:            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:623:12: error: no set method providing array access
+exception:         map["network_required"] = if (voice.isNetworkConnectionRequired) "1" else "0"
+exception:            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:624:12: error: unresolved reference: map["features"]
+exception:         map["features"] = voice.features.joinToString(separator = "\t")
+exception:            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:624:12: error: no set method providing array access
+exception:         map["features"] = voice.features.joinToString(separator = "\t")
+exception:            ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:624:42: error: unresolved reference: joinToString
+exception:         map["features"] = voice.features.joinToString(separator = "\t")
+exception:                                          ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:656:20: error: unresolved reference: HashMap
+exception:         val data = HashMap<String, String>()
+exception:                    ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:661:16: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         result.success(data)
+exception:                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:669:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 requestAudioFocus()
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:683:13: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             ttsStatus = null
+exception:             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:684:13: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             tts = TextToSpeech(context, onInitListenerWithoutCallback, selectedEngine)
+exception:             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:690:35: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         if (awaitSynthCompletion) synth = false
+exception:                                   ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:691:35: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         if (awaitSpeakCompletion) speaking = false
+exception:                                   ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:700:13: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             if (isError) {
+exception:             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:701:45: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 this.parcelFileDescriptor!!.closeWithError("Error synthesizing TTS to file")
+exception:                                             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:703:45: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 this.parcelFileDescriptor!!.close()
+exception:                                             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:711:18: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         bundle!!.putString(
+exception:                  ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:724:53: error: unresolved reference: apply
+exception:                 val contentValues = ContentValues().apply {
+exception:                                                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:725:21: error: unresolved reference: put
+exception:                     put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:726:21: error: unresolved reference: put
+exception:                     put(MediaStore.MediaColumns.MIME_TYPE, "audio/wav")
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:727:21: error: unresolved reference: put
+exception:                     put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_MUSIC)
+exception:                     ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:730:22: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 this.parcelFileDescriptor = resolver?.openFileDescriptor(uri!!, "rw")
+exception:                      ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:742:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         if (result == TextToSpeech.SUCCESS) {
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:743:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             Log.d(tag, "Successfully created file : $fullPath")
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:745:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             Log.d(tag, "Failed creating file : $fullPath")
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:751:56: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             if (methodChannel != null) methodChannel!!.invokeMethod(
+exception:                                                        ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:763:40: error: unresolved reference: javaClass
+exception:         val fields: Array<Field> = tts.javaClass.declaredFields
+exception:                                        ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:764:26: error: unresolved reference: indices
+exception:         for (j in fields.indices) {
+exception:                          ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:765:23: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             fields[j].isAccessible = true
+exception:                       ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:767:17: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                 try {
+exception:                 ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:770:29: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                         Log.e(tag, "*******TTS -> mServiceConnection == null*******")
+exception:                             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:773:23: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     e.printStackTrace()
+exception:                       ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:775:23: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     e.printStackTrace()
+exception:                       ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:777:23: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:                     e.printStackTrace()
+exception:                       ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:796:9: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:         audioManager = context?.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+exception:         ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:799:13: error: class 'kotlin.Unit' was compiled with an incompatible version of Kotlin. The actual metadata version is 2.2.0, but the compiler version 1.9.0 can read versions up to 2.0.0.
+exception: the class is loaded from C:/Users/goobo/.gradle/caches/8.14/transforms/c9a9592906d24bed91747a7f746be2c2/transformed/jetified-kotlin-stdlib-2.2.20.jar!/kotlin/Unit.class
+exception:             audioFocusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
+exception:             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:810:32: error: unresolved reference: let
+exception:             audioFocusRequest?.let { audioManager?.abandonAudioFocusRequest(it) }
+exception:                                ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_tts-4.2.5\android\src\main\kotlin\com\eyedeadevelopment\fluttertts\FlutterTtsPlugin.kt:810:77: error: unresolved reference: it
+exception:             audioFocusRequest?.let { audioManager?.abandonAudioFocusRequest(it) }
+exception:                                                                             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\speech_to_text-7.3.0\android\src\main\kotlin\com\csdcorp\speech_to_text\SpeechToTextPlugin.kt:293:13: warning: variable 'context' is never used
+exception:         val context = pluginContext
+exception:             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\speech_to_text-7.3.0\android\src\main\kotlin\com\csdcorp\speech_to_text\SpeechToTextPlugin.kt:362:23: warning: unnecessary safe call on a non-null receiver of type SpeechRecognizer
+exception:             recognizer?.checkRecognitionSupport(recognizerIntent, Executors.newSingleThreadExecutor(),
+exception:                       ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\speech_to_text-7.3.0\android\src\main\kotlin\com\csdcorp\speech_to_text\SpeechToTextPlugin.kt:367:35: warning: unnecessary safe call on a non-null receiver of type SpeechRecognizer
+exception:                         recognizer?.destroy()
+exception:                                   ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\speech_to_text-7.3.0\android\src\main\kotlin\com\csdcorp\speech_to_text\SpeechToTextPlugin.kt:371:35: warning: unnecessary safe call on a non-null receiver of type SpeechRecognizer
+exception:                         recognizer?.destroy()
+exception:                                   ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\speech_to_text-7.3.0\android\src\main\kotlin\com\csdcorp\speech_to_text\SpeechToTextPlugin.kt:544:45: warning: 'getDefaultAdapter(): BluetoothAdapter!' is deprecated. Deprecated in Java
+exception:         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+exception:                                             ^
+exception: c:\Users\goobo\AppData\Local\Pub\Cache\hosted\pub.dev\speech_to_text-7.3.0\android\src\main\kotlin\com\csdcorp\speech_to_text\SpeechToTextPlugin.kt:591:45: warning: variable 'supportsLocal' initializer is redundant
+exception:                         var supportsLocal = false
+exception:                                             ^
+
+FAILURE: Build completed with 3 failures.
+
+1: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':flutter_timezone:compileDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+2: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':flutter_tts:compileDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+3: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':app:checkDebugDuplicateClasses'.
+> Could not resolve all files for configuration ':app:debugRuntimeClasspath'.
+   > Failed to transform x86_64_debug-1.0.0-3452d735bd38224ef2db85ca763d862d6326b17f.jar (io.flutter:x86_64_debug:1.0.0-3452d735bd38224ef2db85ca763d862d6326b17f) to match attributes {artifactType=enumerated-runtime-classes, org.gradle.category=library, org.gradle.libraryelements=jar, org.gradle.status=release, org.gradle.usage=java-runtime}.
+      > Execution failed for JetifyTransform: C:\Users\goobo\.gradle\caches\modules-2\files-2.1\io.flutter\x86_64_debug\1.0.0-3452d735bd38224ef2db85ca763d862d6326b17f\d5668ca1105169168587936ab2c130baa4ae4fa\x86_64_debug-1.0.0-3452d735bd38224ef2db85ca763d862d6326b17f.jar.
+         > Java heap space
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+BUILD FAILED in 1m 1s
+Running Gradle task 'assembleDebug'...                             62.0s
+
+┌─ Flutter Fix ────────────────────────────────────────────────────────────────────────────────┐
+│ [!] Your project requires a newer version of the Kotlin Gradle plugin.                       │
+│ Find the latest version on https://kotlinlang.org/docs/releases.html#release-details, then   │
+│ update the                                                                                   │
+│ version number of the plugin with id "org.jetbrains.kotlin.android" in the plugins block of  │
+│ D:\AntiGravityProject\TalkRecognition\android\settings.gradle.                               │
+│                                                                                              │
+│ Alternatively (if your project was created before Flutter 3.19), update                      │
+│ D:\AntiGravityProject\TalkRecognition\android\build.gradle.kts                               │
+│ ext.kotlin_version = '<latest-version>'                                                      │
+└──────────────────────────────────────────────────────────────────────────────────────────────┘
+Gradle task assembleDebug failed with exit code 1
