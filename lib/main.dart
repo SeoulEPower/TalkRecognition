@@ -1,4 +1,6 @@
 ﻿import 'dart:async';
+import 'dart:io';
+import 'dart:typed_data';
 
 
 import 'package:flutter/material.dart';
@@ -7,12 +9,15 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:torch_light/torch_light.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
+import 'package:flutter_bluetooth_classic_serial/flutter_bluetooth_classic.dart';
+import 'dart:convert';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -67,6 +72,8 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
   String _text = 'Listening...';
   String _status = 'Standby';
   final List<String> _history = [];
+  String _currentTime = '';
+  Timer? _clockTimer;
   Timer? _alarmTimer;
   Timer? _alarmSoundTimer; // 알람 사운드 루프 타이머
   bool _isAlarmRinging = false;
@@ -82,9 +89,27 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
   String? _pendingSmsName;
   String? _pendingSmsMessage; // 확인 대기 중인 메시지
 
+  // 메모 상태
+  bool _isMemoMode = false;
+  final List<String> _memoBuffer = [];
+  int _memoSilenceCount = 0; // 침묵 타임아웃 카운터 (무한루프 방지)
+
   // PiP 상태
   bool _isInPipMode = false;
   static const EventChannel _pipEventChannel = EventChannel('com.example.talk_recognition/pip');
+
+  // Bluetooth Classic 상태
+  final FlutterBluetoothClassic _bluetooth = FlutterBluetoothClassic();
+  StreamSubscription<BluetoothConnectionState>? _connectionSubscription;
+  StreamSubscription<BluetoothData>? _dataSubscription;
+  bool _isScanning = false;
+  bool _isBleConnected = false;
+  bool _isAdcMonitoring = false;
+  bool _isBlinking = false;
+  List<bool> _pinStates = [false, false, false, false]; // 4채널 GPIO
+  List<int> _adcValues = [0, 0]; // 2채널 ADC (0~4095)
+  String _bleStatus = '미연결';
+  String _rxBuffer = ''; // 수신 데이터 버퍼
 
   void _addToHistory(String command) {
     setState(() {
@@ -116,6 +141,7 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
     _requestPermissions();
     _loadInstalledApps();
     _initPipListener();
+    _startClock();
   }
 
   void _initPipListener() {
@@ -147,9 +173,24 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
     });
   }
 
+  void _startClock() {
+    _currentTime = DateFormat('HH:mm:ss').format(DateTime.now());
+    _clockTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (mounted) {
+        setState(() {
+          _currentTime = DateFormat('HH:mm:ss').format(DateTime.now());
+        });
+      }
+    });
+  }
+
   @override
   void dispose() {
+    _clockTimer?.cancel();
     _animationController.dispose();
+    _connectionSubscription?.cancel();
+    _dataSubscription?.cancel();
+    try { _bluetooth.disconnect(); } catch (_) {}
     super.dispose();
   }
 
@@ -168,6 +209,22 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
     print("DEBUG: Camera: $cameraStatus");
     print("DEBUG: Contacts: $contactsStatus");
     print("DEBUG: SMS: $smsStatus");
+
+    // BLE 권한
+    final btScanStatus = await Permission.bluetoothScan.request();
+    final btConnectStatus = await Permission.bluetoothConnect.request();
+    final locationStatus = await Permission.location.request();
+    print("DEBUG: BT Scan: $btScanStatus");
+    print("DEBUG: BT Connect: $btConnectStatus");
+    print("DEBUG: Location: $locationStatus");
+
+    // 외부 저장소 권한 (메모 저장용)
+    final storageStatus = await Permission.storage.request();
+    print("DEBUG: Storage: $storageStatus");
+    if (!storageStatus.isGranted) {
+      final manageStatus = await Permission.manageExternalStorage.request();
+      print("DEBUG: ManageStorage: $manageStatus");
+    }
     
     if (alarmStatus != PermissionStatus.granted) {
        _speak("정확한 알람을 위해 권한 설정이 필요할 수 있어요.");
@@ -225,7 +282,7 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
   // SMS 대기 상태인지 확인
   bool get _isWaitingForSms => _pendingSmsPhone != null || _pendingSmsMessage != null;
 
-  Future<void> _listen() async {
+   Future<void> _listen() async {
     if (!_isListening) {
       bool available = await _speech.initialize(
         onStatus: (status) {
@@ -235,7 +292,7 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
               _isListening = false;
             }
           });
-          // SMS 대기 중이면 자동으로 다시 듣기
+          // SMS 대기 중이면 자동으로 다시 듣기 (메모 모드는 onResult에서 처리)
           if ((status == 'done' || status == 'notListening') && _isWaitingForSms) {
             Future.delayed(const Duration(milliseconds: 500), () {
               if (_isWaitingForSms) {
@@ -249,7 +306,6 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
             _status = errorNotification.errorMsg;
             _isListening = false;
           });
-          // SMS 대기 중이면 에러 무시하고 다시 듣기
           if (_isWaitingForSms) {
             print("DEBUG: STT error during SMS wait, retrying: ${errorNotification.errorMsg}");
             Future.delayed(const Duration(milliseconds: 500), () {
@@ -257,6 +313,9 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
                 _listen();
               }
             });
+          } else if (_isMemoMode) {
+            // 메모 모드 에러 시 리스닝 중지, 사용자가 탭해서 재시작
+            print("DEBUG: STT error in memo mode: ${errorNotification.errorMsg}");
           } else {
             _speak("뭐라구?");
           }
@@ -271,11 +330,48 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
               _text = val.recognizedWords;
             });
             if (val.finalResult) {
-              _processCommand(val.recognizedWords);
+              // 메모 모드일 때
+              if (_isMemoMode) {
+                final words = val.recognizedWords.trim();
+                if (words.contains('취소')) {
+                  // 메모 취소
+                  setState(() {
+                    _isMemoMode = false;
+                    _memoBuffer.clear();
+                    _memoSilenceCount = 0;
+                  });
+                  _addToHistory('❌ 메모 취소');
+                  _speak('메모를 취소했어요.');
+                } else if (words.contains('저장')) {
+                  final beforeSave = words.replaceAll(RegExp(r'저장(해|하자|해줘)?'), '').trim();
+                  if (beforeSave.isNotEmpty) {
+                    _memoBuffer.add(beforeSave);
+                  }
+                  _saveMemo();
+                } else if (words.isNotEmpty) {
+                  _memoBuffer.add(words);
+                  _addToHistory('📝 $words');
+                  _memoSilenceCount = 0;
+                  // initialize 없이 바로 다시 리스닝
+                  Future.delayed(const Duration(milliseconds: 100), () {
+                    if (_isMemoMode) _listenMemo();
+                  });
+                } else {
+                  // 침묵 타임아웃 — 자동 재시작 (최대 3회)
+                  _memoSilenceCount++;
+                  if (_memoSilenceCount < 3 && _isMemoMode) {
+                    Future.delayed(const Duration(milliseconds: 300), () {
+                      if (_isMemoMode) _listenMemo();
+                    });
+                  }
+                }
+              } else {
+                _processCommand(val.recognizedWords);
+              }
             }
           },
           localeId: 'ko_KR',
-          pauseFor: const Duration(seconds: 5),
+          pauseFor: const Duration(seconds: 10),
         );
       } else {
          setState(() => _status = '음성 인식 불가');
@@ -284,6 +380,163 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
     } else {
       setState(() => _isListening = false);
       _speech.stop();
+    }
+  }
+
+  // 메모 모드 전용: initialize 없이 바로 listen만 호출 (빠른 재시작)
+  void _listenMemo() {
+    if (_isListening || !_isMemoMode) return;
+    setState(() => _isListening = true);
+    _speech.listen(
+      onResult: (val) {
+        setState(() {
+          _text = val.recognizedWords;
+        });
+        if (val.finalResult) {
+          final words = val.recognizedWords.trim();
+          if (words.contains('취소')) {
+            setState(() {
+              _isMemoMode = false;
+              _memoBuffer.clear();
+              _memoSilenceCount = 0;
+            });
+            _addToHistory('❌ 메모 취소');
+            _speak('메모를 취소했어요.');
+          } else if (words.contains('저장')) {
+            final beforeSave = words.replaceAll(RegExp(r'저장(해|하자|해줘)?'), '').trim();
+            if (beforeSave.isNotEmpty) {
+              _memoBuffer.add(beforeSave);
+            }
+            _saveMemo();
+          } else if (words.isNotEmpty) {
+            _memoBuffer.add(words);
+            _addToHistory('📝 $words');
+            _memoSilenceCount = 0;
+            Future.delayed(const Duration(milliseconds: 100), () {
+              if (_isMemoMode) _listenMemo();
+            });
+          } else {
+            _memoSilenceCount++;
+            if (_memoSilenceCount < 3 && _isMemoMode) {
+              Future.delayed(const Duration(milliseconds: 300), () {
+                if (_isMemoMode) _listenMemo();
+              });
+            }
+          }
+        }
+      },
+      localeId: 'ko_KR',
+      pauseFor: const Duration(seconds: 10),
+    );
+  }
+
+  // 저장된 메모 목록 확인 (다이얼로그)
+  Future<void> _listMemos() async {
+    try {
+      final memoDir = Directory('/storage/emulated/0/Download/음성메모');
+      if (!await memoDir.exists()) {
+        await _speak("저장된 메모가 없어요.");
+        return;
+      }
+      final files = await memoDir.list().where((f) => f.path.endsWith('.txt')).toList();
+      if (files.isEmpty) {
+        await _speak("저장된 메모가 없어요.");
+        return;
+      }
+      // 파일명 리스트 준비
+      files.sort((a, b) => b.path.compareTo(a.path));
+      final fileNames = files.map((f) => f.path.split('/').last.replaceAll('.txt', '')).toList();
+
+      if (!mounted) return;
+      await _speak("저장된 메모가 ${files.length}개 있어요.");
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          backgroundColor: const Color(0xFF1A1A2E),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+            side: const BorderSide(color: Color(0xFF00E5FF), width: 1),
+          ),
+          title: Text(
+            '📋 메모 목록 (${files.length}개)',
+            style: const TextStyle(color: Color(0xFF00E5FF), fontSize: 16),
+          ),
+          content: SizedBox(
+            width: double.maxFinite,
+            height: 300,
+            child: ListView.builder(
+              itemCount: fileNames.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: const Icon(Icons.description, color: Color(0xFF00E5FF), size: 20),
+                  title: Text(
+                    fileNames[index],
+                    style: const TextStyle(color: Colors.white70, fontSize: 13),
+                  ),
+                  onTap: () {
+                    Navigator.pop(ctx);
+                    _showMemoContent('  📄 ${fileNames[index]}');
+                  },
+                );
+              },
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text('닫기', style: TextStyle(color: Color(0xFF00E5FF))),
+            ),
+          ],
+        ),
+      );
+    } catch (e) {
+      print("DEBUG: List memos error: $e");
+      await _speak("메모 목록을 불러올 수 없어요.");
+    }
+  }
+
+  // 메모 파일 내용을 다이얼로그로 표시
+  Future<void> _showMemoContent(String historyEntry) async {
+    try {
+      final name = historyEntry.replaceAll(RegExp(r'[📄📋\s]'), '').trim();
+      final file = File('/storage/emulated/0/Download/음성메모/$name.txt');
+      if (!await file.exists()) {
+        _speak("파일을 찾을 수 없어요.");
+        return;
+      }
+
+      final content = await file.readAsString();
+
+      if (!mounted) return;
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          backgroundColor: const Color(0xFF1A1A2E),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+            side: const BorderSide(color: Color(0xFF00E5FF), width: 1),
+          ),
+          title: Text(
+            '📝 $name',
+            style: const TextStyle(color: Color(0xFF00E5FF), fontSize: 16),
+          ),
+          content: SingleChildScrollView(
+            child: Text(
+              content,
+              style: const TextStyle(color: Colors.white70, fontSize: 14, height: 1.5),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text('닫기', style: TextStyle(color: Color(0xFF00E5FF))),
+            ),
+          ],
+        ),
+      );
+    } catch (e) {
+      print("DEBUG: Show memo error: $e");
+      _speak("메모를 열 수 없어요.");
     }
   }
 
@@ -345,14 +598,56 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
       return;
     }
 
-    if (commandLower.contains('몇 시') || commandLower.contains('시간')) {
+    // ===== BLE/ESP32 명령 (최우선) =====
+    final bool _isBleKeyword = commandLower.contains('esp') || commandLower.contains('이에스피') ||
+        commandLower.contains('블루투스') || commandLower.contains('디바이스');
+    if (_isBleKeyword &&
+        (commandLower.contains('연결') || commandLower.contains('접속') || commandLower.contains('커넥트'))) {
+      _scanAndConnect();
+    } else if (_isBleKeyword &&
+               (commandLower.contains('끊') || commandLower.contains('해제') || commandLower.contains('차단'))) {
+      _disconnectBle();
+    } else if ((commandLower.contains('센서') || commandLower.contains('adc')) &&
+               (commandLower.contains('보여') || commandLower.contains('시작') || commandLower.contains('확인'))) {
+      _sendBleCommand('ADC:START');
+      setState(() => _isAdcMonitoring = true);
+      await _speak('센서 모니터링을 시작합니다.');
+    } else if ((commandLower.contains('센서') || commandLower.contains('adc')) &&
+               (commandLower.contains('꺼') || commandLower.contains('중지') || commandLower.contains('멈'))) {
+      _sendBleCommand('ADC:STOP');
+      setState(() => _isAdcMonitoring = false);
+      await _speak('센서 모니터링을 중지합니다.');
+    } else if (_isBleKeyword && commandLower.contains('상태')) {
+      _sendBleCommand('STATUS');
+      final states = List.generate(4, (i) => '${i + 1}번 ${_pinStates[i] ? "켜짐" : "꺼짐"}').join(', ');
+      await _speak('ESP 상태: $states');
+    } else if ((commandLower.contains('블링크') || commandLower.contains('깜빡')) &&
+               (commandLower.contains('시작') || commandLower.contains('켜'))) {
+      _sendBleCommand('FUNC:blink');
+      await _speak('LED 블링크를 시작합니다.');
+    } else if ((commandLower.contains('블링크') || commandLower.contains('깜빡')) &&
+               (commandLower.contains('중지') || commandLower.contains('꺼') || commandLower.contains('멈'))) {
+      _sendBleCommand('FUNC:blinkStop');
+      await _speak('LED 블링크를 중지합니다.');
+    } else if (_isBleConnected && _matchEspPinCommand(commandLower)) {
+      // "N번 켜/꺼" 패턴이 매칭되면 _matchEspPinCommand 내에서 처리
+    } else if ((commandLower.contains('전체') || commandLower.contains('다 ') || commandLower.contains('모두')) &&
+               _isBleConnected &&
+               (commandLower.contains('켜') || commandLower.contains('꺼'))) {
+      final on = commandLower.contains('켜');
+      _sendBleCommand(on ? 'ALL:ON' : 'ALL:OFF');
+      await _speak(on ? '전체 출력을 켰습니다.' : '전체 출력을 껐습니다.');
+    } else if (_isBleConnected && _matchFuncCommand(commandLower)) {
+      // "{name} 실행/시작/중지" 패턴 처리
+    // ===== 기존 명령어 =====
+    } else if (commandLower.contains('몇 시') || commandLower.contains('시간')) {
       _speakTime();
     } else if (commandLower.contains('알려줘') || commandLower.contains('알려 줘') || 
                commandLower.contains('알람') || commandLower.contains('알림')) {
       _processAlarm(commandLower);
     } else if (commandLower.contains('도움말') || commandLower.contains('사용법') || 
                commandLower.contains('뭐 할 수 있어') || commandLower.contains('가능한')) {
-      await _speak("시간 확인, 알람 설정, 그리고 손전등을 켜거나 끌 수 있습니다. '불 켜'라고 말해보세요.");
+      await _speak("시간 확인, 알람 설정, ESP32 제어, 그리고 손전등을 켜거나 끌 수 있습니다.");
     } else if (commandLower.contains('불 켜') || commandLower.contains('불켜')) {
       _controlFlashlight(true);
     } else if (commandLower.contains('불 꺼') || commandLower.contains('불꺼')) {
@@ -366,6 +661,16 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
       _processSmsCommand(commandLower);
     } else if (commandLower.contains('실행') || commandLower.contains('열어') || commandLower.contains('켜')) {
       _processAppLaunchCommand(commandLower);
+    } else if (commandLower.contains('메모') && (commandLower.contains('확인') || commandLower.contains('목록') || commandLower.contains('보여'))) {
+      _listMemos();
+    } else if (commandLower.contains('메모')) {
+      setState(() {
+        _isMemoMode = true;
+        _memoBuffer.clear();
+        _memoSilenceCount = 0;
+      });
+      await _speak("메모 시작. 저장해 라고 말하면 저장됩니다.");
+      Future.delayed(const Duration(milliseconds: 1500), () => _listen());
     } else if (commandLower.contains('더하기') || commandLower.contains('빼기') || 
                commandLower.contains('곱하기') || commandLower.contains('나누기') ||
                commandLower.contains('플러스') || commandLower.contains('마이너스') ||
@@ -374,7 +679,6 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
                commandLower.contains('/') || commandLower.contains('÷')) {
       _processCalculation(commandLower);
     } else {
-       // Only speak if the command has significant length/content
        if (commandLower.isNotEmpty) {
           await _speak("뭐라구?");
        }
@@ -513,17 +817,24 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
   }
 
   Future<void> _scheduleNotificationAt(tz.TZDateTime scheduledTime) async {
-    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+    final AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
-      'voice_assistant_channel',
+      'alarm_channel_v2',
       'Voice Assistant Alarms',
       channelDescription: 'Channel for voice assistant alarms',
       importance: Importance.max,
       priority: Priority.high,
-      ticker: 'ticker',
+      category: AndroidNotificationCategory.alarm,
+      fullScreenIntent: true,       // 화면 OFF 시 화면 깨움
+      ongoing: false,
+      autoCancel: true,
+      sound: RawResourceAndroidNotificationSound('alarm'),
+      playSound: true,
+      enableVibration: true,
+      vibrationPattern: Int64List.fromList([0, 1000, 500, 1000, 500, 1000]),
     );
     
-    const NotificationDetails platformChannelSpecifics =
+    final NotificationDetails platformChannelSpecifics =
         NotificationDetails(android: androidPlatformChannelSpecifics);
 
 
@@ -947,6 +1258,52 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
     }
   }
 
+  Future<void> _saveMemo() async {
+    if (_memoBuffer.isEmpty) {
+      setState(() => _isMemoMode = false);
+      await _speak("저장할 메모 내용이 없어요.");
+      return;
+    }
+
+    try {
+      // 다운로드 폴더에 저장 (앱 삭제해도 유지)
+      final memoDir = Directory('/storage/emulated/0/Download/음성메모');
+      if (!await memoDir.exists()) {
+        await memoDir.create(recursive: true);
+      }
+
+      // 파일명: 메모_2026-02-16_01-21-06.txt (초 단위로 중복 방지)
+      final now = DateTime.now();
+      final fileName = '메모_${DateFormat('yyyy-MM-dd_HH-mm-ss').format(now)}.txt';
+      final file = File('${memoDir.path}/$fileName');
+
+      // 내용 작성
+      final content = StringBuffer();
+      content.writeln('📝 음성 메모');
+      content.writeln('날짜: ${DateFormat('yyyy년 M월 d일 HH:mm').format(now)}');
+      content.writeln('─' * 30);
+      content.writeln('');
+      for (final line in _memoBuffer) {
+        content.writeln(line);
+      }
+
+      await file.writeAsString(content.toString());
+
+      setState(() {
+        _isMemoMode = false;
+        _memoBuffer.clear();
+      });
+
+      _addToHistory('📝 메모 저장: $fileName');
+      await _speak("저장완료");
+      print("DEBUG: Memo saved to ${file.path}");
+    } catch (e) {
+      print("DEBUG: Memo save error: $e");
+      setState(() => _isMemoMode = false);
+      await _speak("메모 저장 중 오류가 발생했어요.");
+    }
+  }
+
   /// 한국어 숫자를 정수로 변환
   /// "일" → 1, "이십삼" → 23, "백오십" → 150, "천이백삼십사" → 1234
   double? _parseKoreanNumber(String text) {
@@ -1078,7 +1435,6 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
 
     const platform = MethodChannel('com.example.talk_recognition/tone');
 
-    // Loop Chime every 2 seconds for 30 seconds (15 times)
     _alarmTimer = Timer.periodic(const Duration(seconds: 2), (timer) async {
        if (_alarmCount >= 15) {
          _stopAlarmSound();
@@ -1087,7 +1443,7 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
            await platform.invokeMethod('playChime');
          } catch (e) {
            print("Error playing chime: $e");
-           _speak("Ding Dong"); // Fallback
+           _speak("Ding Dong");
          }
          _alarmCount++;
        }
@@ -1104,6 +1460,630 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
       _isAlarmRinging = false;
       _text = "ALARM STOPPED";
     });
+  }
+
+  // ========== Bluetooth Classic (ESP32) ==========
+
+  /// 페어링된 ESP32 찾아서 연결
+  Future<void> _scanAndConnect() async {
+    if (_isBleConnected) {
+      _addToHistory('ℹ️ 이미 연결되어 있음');
+      return;
+    }
+    if (_isScanning) return;
+
+    setState(() {
+      _isScanning = true;
+      _bleStatus = '검색 중...';
+    });
+    _addToHistory('🔵 페어링된 ESP32 검색');
+
+    try {
+      // 권한 확인
+      final btConnect = await Permission.bluetoothConnect.request();
+      final btScan = await Permission.bluetoothScan.request();
+      print('DEBUG: BT permissions - connect:$btConnect, scan:$btScan');
+
+      if (!btConnect.isGranted) {
+        _addToHistory('❌ 블루투스 권한 거부됨');
+        setState(() { _isScanning = false; _bleStatus = '권한 필요'; });
+        return;
+      }
+
+      // 블루투스 활성화 확인
+      final isEnabled = await _bluetooth.isBluetoothEnabled();
+      if (!isEnabled) {
+        _addToHistory('❌ 블루투스 꺼져 있음');
+        setState(() { _isScanning = false; _bleStatus = 'BT OFF'; });
+        return;
+      }
+
+      // ★ 페어링된 디바이스 목록에서 ESP32 찾기
+      final pairedDevices = await _bluetooth.getPairedDevices();
+      print('DEBUG: ${pairedDevices.length} paired devices found');
+
+      BluetoothDevice? esp32;
+      for (final device in pairedDevices) {
+        final name = device.name ?? '';
+        _addToHistory('  📡 $name (${device.address})');
+        print('DEBUG: Paired: $name (${device.address})');
+        if (name.contains('ESP32') || name.contains('Controller')) {
+          esp32 = device;
+          _addToHistory('🔵 ★ 타겟 발견! $name');
+        }
+      }
+
+      setState(() => _isScanning = false);
+
+      if (esp32 == null) {
+        _addToHistory('❌ ESP32 미발견 — 안드로이드 설정에서 먼저 페어링하세요');
+        setState(() => _bleStatus = '미연결');
+        return;
+      }
+
+      // 연결
+      await _connectToDevice(esp32);
+
+    } catch (e, stackTrace) {
+      print('DEBUG: BT error: $e\n$stackTrace');
+      _addToHistory('❌ BT 오류: $e');
+      setState(() { _isScanning = false; _bleStatus = '오류'; });
+    }
+  }
+
+  /// Bluetooth Classic 디바이스에 연결
+  Future<void> _connectToDevice(BluetoothDevice device) async {
+    try {
+      setState(() => _bleStatus = '연결 중...');
+      _addToHistory('🔵 연결 시도: ${device.name}');
+      print('DEBUG: Connecting to ${device.address}...');
+
+      // 기존 리스너 정리
+      _connectionSubscription?.cancel();
+      _connectionSubscription = null;
+      _dataSubscription?.cancel();
+      _dataSubscription = null;
+
+      // ★ 먼저 연결 (리스너는 연결 성공 후에 등록!)
+      final result = await _bluetooth.connect(device.address);
+      print('DEBUG: Connect result: $result');
+
+      if (result) {
+        setState(() {
+          _isBleConnected = true;
+          _bleStatus = '연결됨';
+        });
+        _addToHistory('🟢 ESP32 연결 완료!');
+
+        // ★ 연결 성공 후 잠시 대기 (BT 스택 안정화)
+        await Future.delayed(const Duration(seconds: 1));
+
+        // ★ 연결 상태 리스너 등록 (연결 후!)
+        _connectionSubscription = _bluetooth.onConnectionChanged.listen((state) {
+          print('DEBUG: BT connection state: connected=${state.isConnected}');
+          // _isBleConnected가 true일 때만 해제 처리 (중복 방지)
+          if (!state.isConnected && _isBleConnected) {
+            setState(() {
+              _isBleConnected = false;
+              _bleStatus = '미연결';
+              _isAdcMonitoring = false;
+            });
+            _addToHistory('🔴 ESP32 연결 해제');
+          }
+        });
+
+        // ★ 데이터 수신 리스너
+        _rxBuffer = '';
+        _dataSubscription = _bluetooth.onDataReceived.listen((data) {
+          _rxBuffer += data.asString();
+          // 줄바꿈 단위로 완성된 메시지 처리
+          while (_rxBuffer.contains('\n')) {
+            final idx = _rxBuffer.indexOf('\n');
+            final line = _rxBuffer.substring(0, idx).trim();
+            _rxBuffer = _rxBuffer.substring(idx + 1);
+            if (line.isNotEmpty) {
+              _onDataReceived(line);
+            }
+          }
+        });
+
+      } else {
+        setState(() => _bleStatus = '연결 실패');
+        _addToHistory('❌ 연결 실패');
+      }
+    } catch (e) {
+      print('DEBUG: BT connect error: $e');
+      _addToHistory('⚠️ 연결 실패: $e');
+      setState(() => _bleStatus = '연결 실패');
+    }
+  }
+
+  /// Bluetooth 연결 해제
+  Future<void> _disconnectBle() async {
+    if (!_isBleConnected) {
+      _addToHistory('ℹ️ 연결된 ESP32 없음');
+      return;
+    }
+    try {
+      _addToHistory('🔴 연결 해제 중...');
+      await _bluetooth.disconnect();
+      _connectionSubscription?.cancel();
+      _connectionSubscription = null;
+      _dataSubscription?.cancel();
+      _dataSubscription = null;
+
+      setState(() {
+        _isBleConnected = false;
+        _bleStatus = '미연결';
+        _isAdcMonitoring = false;
+      });
+      _addToHistory('🔴 연결 해제 완료');
+    } catch (e) {
+      print('DEBUG: BT disconnect error: $e');
+      setState(() {
+        _isBleConnected = false;
+        _bleStatus = '미연결';
+      });
+    }
+  }
+
+  /// 명령 전송 (Bluetooth Classic Serial)
+  Future<void> _sendBleCommand(String cmd) async {
+    if (!_isBleConnected) {
+      await _speak('ESP32가 연결되어 있지 않아요.');
+      return;
+    }
+    try {
+      await _bluetooth.sendString('$cmd\n');
+      print('DEBUG: BT sent: $cmd');
+    } catch (e) {
+      print('DEBUG: BT write error: $e');
+      await _speak('명령 전송에 실패했어요.');
+    }
+  }
+
+  /// ESP32에서 수신한 데이터 처리
+  void _onDataReceived(String msg) {
+    print('DEBUG: BT received: $msg');
+
+    // GPIO 상태: "GPIO:1:ON,2:OFF,3:OFF,4:OFF"
+    if (msg.startsWith('GPIO:')) {
+      try {
+        final payload = msg.substring(5);
+        final parts = payload.split(',');
+        final List<String> statusParts = [];
+        for (final part in parts) {
+          final kv = part.split(':');
+          if (kv.length == 2) {
+            final pin = int.tryParse(kv[0]);
+            if (pin != null && pin >= 1 && pin <= 4) {
+              final isOn = kv[1].trim().toUpperCase() == 'ON';
+              setState(() {
+                _pinStates[pin - 1] = isOn;
+              });
+              statusParts.add('CH$pin:${isOn ? "ON" : "OFF"}');
+            }
+          }
+        }
+        _addToHistory('📋 GPIO 상태: ${statusParts.join(", ")}');
+      } catch (e) {
+        print('DEBUG: GPIO parse error: $e');
+      }
+      return;
+    }
+
+    // ADC 값: "ADC:1:2048,2:1536"
+    if (msg.startsWith('ADC:')) {
+      try {
+        final payload = msg.substring(4);
+        final parts = payload.split(',');
+        for (final part in parts) {
+          final kv = part.split(':');
+          if (kv.length == 2) {
+            final ch = int.tryParse(kv[0]);
+            final val = int.tryParse(kv[1]);
+            if (ch != null && val != null && ch >= 1 && ch <= 2) {
+              setState(() {
+                _adcValues[ch - 1] = val;
+              });
+            }
+          }
+        }
+      } catch (e) {
+        print('DEBUG: ADC parse error: $e');
+      }
+      return;
+    }
+
+    // FUNC 응답: "FUNC:blink:ON", "FUNC:blink:OFF"
+    if (msg.startsWith('FUNC:')) {
+      if (msg.contains('blink:ON')) {
+        setState(() => _isBlinking = true);
+        _addToHistory('💡 LED 블링크 시작');
+      } else if (msg.contains('blink:OFF')) {
+        setState(() => _isBlinking = false);
+        _addToHistory('⬛ LED 블링크 중지');
+      } else {
+        _addToHistory('📨 $msg');
+      }
+      return;
+    }
+  }
+
+  /// "N번 켜/꺼" 음성 명령 매칭
+  bool _matchEspPinCommand(String cmd) {
+    final pattern = RegExp(r'(\d+|[일이삼사])\s*번\s*(켜|꺼)');
+    final match = pattern.firstMatch(cmd);
+    if (match != null) {
+      int? pin;
+      final numStr = match.group(1)!;
+      pin = int.tryParse(numStr);
+      if (pin == null) {
+        const korDigits = {'일': 1, '이': 2, '삼': 3, '사': 4};
+        pin = korDigits[numStr];
+      }
+      if (pin != null && pin >= 1 && pin <= 4) {
+        final on = match.group(2) == '켜';
+        _sendBleCommand('$pin:${on ? "ON" : "OFF"}');
+        _speak('${pin}번 출력을 ${on ? "켰" : "껐"}습니다.');
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /// "{name} 실행/시작/중지" 함수 호출 매칭
+  bool _matchFuncCommand(String cmd) {
+    final pattern = RegExp(r'(.+?)\s*(실행|시작|중지|멈춰|마쳐)');
+    final match = pattern.firstMatch(cmd);
+    if (match != null) {
+      String name = match.group(1)!.trim();
+      final action = match.group(2)!;
+      // ESP/블루투스 등 시스템 키워드면 무시
+      if (name.contains('esp') || name.contains('블루투스') || name.contains('센서') || name.contains('adc')) return false;
+      if (name.contains('메모') || name.contains('알람') || name.contains('알림')) return false;
+
+      if (action == '중지' || action == '멈춰' || action == '마쳐') {
+        name = '${name}Stop';
+      }
+      // 한글 이름을 camelCase로 변환하지 않고 그대로 전송 (ESP32에서 매핑)
+      _sendBleCommand('FUNC:$name');
+      _speak('$name 기능을 실행합니다.');
+      return true;
+    }
+    return false;
+  }
+
+  /// BLE 상태 인디케이터 위젯 + 연결/해제 버튼
+  Widget _buildBleStatusBar() {
+    const accentCyan = Color(0xFF00E5FF);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      margin: const EdgeInsets.only(bottom: 8),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.3),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: _isBleConnected ? accentCyan.withOpacity(0.5) : Colors.white12),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.bluetooth,
+            color: _isBleConnected ? accentCyan : (_isScanning ? Colors.amber : Colors.white24),
+            size: 16,
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              'ESP32: $_bleStatus',
+              style: TextStyle(
+                color: _isBleConnected ? accentCyan : Colors.white54,
+                fontSize: 11,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          // 연결/해제 버튼
+          if (_isScanning)
+            const SizedBox(
+              width: 16, height: 16,
+              child: CircularProgressIndicator(
+                strokeWidth: 2, color: Colors.amber,
+              ),
+            )
+          else
+            SizedBox(
+              height: 28,
+              child: TextButton(
+                onPressed: _isBleConnected ? _disconnectBle : _scanAndConnect,
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  backgroundColor: _isBleConnected
+                      ? Colors.red.withOpacity(0.2)
+                      : accentCyan.withOpacity(0.15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                    side: BorderSide(
+                      color: _isBleConnected
+                          ? Colors.redAccent.withOpacity(0.5)
+                          : accentCyan.withOpacity(0.4),
+                    ),
+                  ),
+                ),
+                child: Text(
+                  _isBleConnected ? '해제' : '연결',
+                  style: TextStyle(
+                    color: _isBleConnected ? Colors.redAccent : accentCyan,
+                    fontSize: 11,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+
+  /// ESP32 Control Panel (GPIO + ADC + Functions)
+  Widget _buildEsp32Panel() {
+    if (!_isBleConnected) return const SizedBox.shrink();
+    const accentCyan = Color(0xFF00E5FF);
+    const accentOrange = Color(0xFFFF9100);
+    const accentGreen = Color(0xFF69F0AE);
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.4),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: accentCyan.withOpacity(0.3)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // ===== GPIO Section =====
+          Row(
+            children: [
+              const Icon(Icons.power, size: 14, color: accentOrange),
+              const SizedBox(width: 6),
+              const Text('GPIO', style: TextStyle(
+                color: accentOrange, fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 1.5)),
+              const Spacer(),
+              // ALL ON / ALL OFF
+              _miniButton('ALL ON', Colors.greenAccent, () {
+                _sendBleCommand('ALL:ON');
+              }),
+              const SizedBox(width: 4),
+              _miniButton('ALL OFF', Colors.redAccent, () {
+                _sendBleCommand('ALL:OFF');
+              }),
+            ],
+          ),
+          const SizedBox(height: 8),
+          // GPIO Toggle Row
+          Row(
+            children: List.generate(4, (i) {
+              final isOn = _pinStates[i];
+              return Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    _sendBleCommand('${i + 1}:${isOn ? "OFF" : "ON"}');
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: i < 3 ? 6 : 0),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    decoration: BoxDecoration(
+                      color: isOn
+                          ? accentGreen.withOpacity(0.15)
+                          : Colors.white.withOpacity(0.05),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: isOn
+                            ? accentGreen.withOpacity(0.5)
+                            : Colors.white12,
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        Icon(
+                          isOn ? Icons.flash_on : Icons.flash_off,
+                          color: isOn ? accentGreen : Colors.white24,
+                          size: 18,
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          'CH${i + 1}',
+                          style: TextStyle(
+                            color: isOn ? accentGreen : Colors.white38,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          isOn ? 'ON' : 'OFF',
+                          style: TextStyle(
+                            color: isOn ? accentGreen : Colors.white24,
+                            fontSize: 9,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }),
+          ),
+
+          const SizedBox(height: 10),
+          // ===== ADC Section =====
+          Row(
+            children: [
+              const Icon(Icons.show_chart, size: 14, color: accentCyan),
+              const SizedBox(width: 6),
+              const Text('ADC', style: TextStyle(
+                color: accentCyan, fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 1.5)),
+              const Spacer(),
+              _miniButton(
+                _isAdcMonitoring ? 'STOP' : 'START',
+                _isAdcMonitoring ? Colors.redAccent : accentCyan,
+                () {
+                  if (_isAdcMonitoring) {
+                    _sendBleCommand('ADC:STOP');
+                    setState(() => _isAdcMonitoring = false);
+                  } else {
+                    _sendBleCommand('ADC:START');
+                    setState(() => _isAdcMonitoring = true);
+                  }
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          ...List.generate(2, (i) {
+            final val = _adcValues[i];
+            final voltage = (val / 4095.0 * 3.3).toStringAsFixed(2);
+            final ratio = val / 4095.0;
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 4),
+              child: Row(
+                children: [
+                  Text('CH${i + 1}', style: const TextStyle(
+                    color: Colors.white54, fontSize: 10, fontFamily: 'monospace')),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(3),
+                      child: LinearProgressIndicator(
+                        value: ratio,
+                        backgroundColor: Colors.white12,
+                        valueColor: AlwaysStoppedAnimation(accentCyan.withOpacity(0.7)),
+                        minHeight: 6,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  SizedBox(
+                    width: 38,
+                    child: Text('$val', textAlign: TextAlign.right,
+                      style: const TextStyle(
+                        color: Colors.white70, fontSize: 10, fontFamily: 'monospace')),
+                  ),
+                  const SizedBox(width: 4),
+                  SizedBox(
+                    width: 38,
+                    child: Text('${voltage}V', textAlign: TextAlign.right,
+                      style: TextStyle(
+                        color: accentCyan.withOpacity(0.8), fontSize: 10, fontFamily: 'monospace')),
+                  ),
+                ],
+              ),
+            );
+          }),
+
+          const SizedBox(height: 8),
+          // ===== Function Buttons =====
+          Row(
+            children: [
+              Icon(_isBlinking ? Icons.lightbulb : Icons.apps,
+                size: 14, color: _isBlinking ? Colors.amberAccent : Colors.amberAccent.withOpacity(0.6)),
+              const SizedBox(width: 6),
+              Text(_isBlinking ? 'BLINK ON' : 'FUNC', style: TextStyle(
+                color: _isBlinking ? Colors.amberAccent : Colors.amberAccent.withOpacity(0.6),
+                fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 1.5)),
+              const Spacer(),
+              _actionButton(
+                label: '💡 BLINK',
+                color: Colors.amberAccent,
+                isActive: _isBlinking,
+                onTap: () {
+                  _sendBleCommand('FUNC:blink');
+                },
+              ),
+              const SizedBox(width: 4),
+              _actionButton(
+                label: '⬛ STOP',
+                color: Colors.redAccent,
+                isActive: false,
+                onTap: () {
+                  _sendBleCommand('FUNC:blinkStop');
+                },
+              ),
+              const SizedBox(width: 4),
+              _actionButton(
+                label: '📋 STATUS',
+                color: accentCyan,
+                isActive: false,
+                onTap: () {
+                  _sendBleCommand('STATUS');
+                  _addToHistory('📋 상태 요청...');
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _miniButton(String label, Color color, VoidCallback onTap) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(6),
+        splashColor: color.withOpacity(0.3),
+        highlightColor: color.withOpacity(0.15),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.12),
+            borderRadius: BorderRadius.circular(6),
+            border: Border.all(color: color.withOpacity(0.4)),
+          ),
+          child: Text(label, style: TextStyle(
+            color: color, fontSize: 9, fontWeight: FontWeight.bold)),
+        ),
+      ),
+    );
+  }
+
+  Widget _actionButton({
+    required String label,
+    required Color color,
+    required bool isActive,
+    required VoidCallback onTap,
+  }) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(6),
+        splashColor: color.withOpacity(0.4),
+        highlightColor: color.withOpacity(0.2),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          decoration: BoxDecoration(
+            color: isActive ? color.withOpacity(0.3) : color.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(6),
+            border: Border.all(
+              color: isActive ? color : color.withOpacity(0.4),
+              width: isActive ? 1.5 : 1,
+            ),
+            boxShadow: isActive ? [
+              BoxShadow(color: color.withOpacity(0.4), blurRadius: 8, spreadRadius: 1),
+            ] : null,
+          ),
+          child: Text(label, style: TextStyle(
+            color: isActive ? Colors.white : color,
+            fontSize: 9,
+            fontWeight: FontWeight.bold)),
+        ),
+      ),
+    );
   }
 
   @override
@@ -1153,7 +2133,43 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
     const Color accentCyan = Color(0xFF00E5FF);
     const Color accentPurple = Color(0xFFBB86FC);
 
-    return Scaffold(
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) return;
+        final shouldExit = await showDialog<bool>(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            backgroundColor: const Color(0xFF1A1A2E),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+              side: const BorderSide(color: Color(0xFF00E5FF), width: 1),
+            ),
+            title: const Text(
+              '앱 종료',
+              style: TextStyle(color: Color(0xFF00E5FF), fontSize: 18),
+            ),
+            content: const Text(
+              '앱을 종료하시겠습니까?',
+              style: TextStyle(color: Colors.white70, fontSize: 14),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(ctx, false),
+                child: const Text('취소', style: TextStyle(color: Colors.white54)),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(ctx, true),
+                child: const Text('종료', style: TextStyle(color: Color(0xFF00E5FF))),
+              ),
+            ],
+          ),
+        );
+        if (shouldExit == true) {
+          SystemNavigator.pop();
+        }
+      },
+      child: Scaffold(
       body: TouchRippleEffect(
         child: Stack(
           children: [
@@ -1197,23 +2213,44 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "COMMAND LOG",
-                            style: TextStyle(color: accentCyan, letterSpacing: 2.0, fontSize: 12),
-                          ),
-                          const SizedBox(height: 10),
+                          _buildBleStatusBar(),
                           Expanded(
                             child: ListView.builder(
-                              reverse: true, // Newest at bottom visually if we want, but usually chat is bottom-up. Standard logs are top-down?
-                              // Let's keep reverse: true so index 0 (newest) is at bottom?
-                              // Actually user code had reverse so let's stick to it but style it better.
-                              itemCount: _history.length,
+                              itemCount: (_isBleConnected ? 1 : 0) + 1 + _history.length,
                               itemBuilder: (context, index) {
-                                final cmd = _history[index];
+                                // Item 0: ESP32 Panel (only when connected)
+                                if (_isBleConnected && index == 0) {
+                                  return _buildEsp32Panel();
+                                }
+
+                                // Next item: COMMAND LOG header
+                                final headerIndex = _isBleConnected ? 1 : 0;
+                                if (index == headerIndex) {
+                                  return const Padding(
+                                    padding: EdgeInsets.only(bottom: 10),
+                                    child: Text(
+                                      "COMMAND LOG",
+                                      style: TextStyle(color: Color(0xFF00E5FF), letterSpacing: 2.0, fontSize: 12),
+                                    ),
+                                  );
+                                }
+
+                                // History items
+                                final historyIndex = index - headerIndex - 1;
+                                if (historyIndex < 0 || historyIndex >= _history.length) {
+                                  return const SizedBox.shrink();
+                                }
+                                final cmd = _history[historyIndex];
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(vertical: 4.0),
                                   child: InkWell(
-                                    onTap: () => _processCommand(cmd),
+                                    onTap: () {
+                                      if (cmd.contains('📄')) {
+                                        _showMemoContent(cmd);
+                                      } else {
+                                        _processCommand(cmd);
+                                      }
+                                    },
                                     child: Container(
                                       padding: const EdgeInsets.all(10),
                                       decoration: BoxDecoration(
@@ -1335,11 +2372,36 @@ class _VoiceAssistantScreenState extends State<VoiceAssistantScreen> with Single
                     ),
                   ),
                 ],
-              ),
-            ),
-          ],
+               ),
+             ),
+
+             // 하단 실시간 시계
+             Positioned(
+               left: 0,
+               right: 0,
+               bottom: 20,
+               child: Text(
+                 _currentTime,
+                 textAlign: TextAlign.center,
+                 style: const TextStyle(
+                   color: Colors.white,
+                   fontSize: 48,
+                   fontWeight: FontWeight.w200,
+                   letterSpacing: 4,
+                   fontFamily: 'monospace',
+                   shadows: [
+                     Shadow(
+                       color: Color(0xFF00E5FF),
+                       blurRadius: 20,
+                     ),
+                   ],
+                 ),
+               ),
+             ),
+           ],
         ),
       ),
+    ),
     );
 
   }

@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  flutter_bluetooth_classic_serial
   url_launcher_linux
 )
 
